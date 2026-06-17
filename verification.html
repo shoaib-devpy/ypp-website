@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Youth Parliament Pakistan | Verification Page</title>
+  <meta name="description" content="Verification page for the Youth Parliament Pakistan animated website prototype." />
+  <meta name="theme-color" content="#08140f" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"></div>
+
+  <header class="site-header" data-blur>
+    <a class="brand brand-logo" href="index.html" aria-label="Youth Parliament Pakistan home">
+      <img src="assets/logo-white-hd.png" alt="Youth Parliament Pakistan logo" />
+    </a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">Menu</button>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="" href="index.html">Home</a>
+      <a class="" href="reports.html">Reports</a>
+      <a class="" href="members.html">Members</a>
+      <a class="active" href="verification.html">Verification</a>
+      <a class="" href="projects.html">Projects</a>
+    </nav>
+  </header>
+  <main>
+    <section class="page-hero section">
+      <div class="orb orb-one" aria-hidden="true"></div>
+      <div class="orb orb-two" aria-hidden="true"></div>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="page-hero-content">
+        <p class="eyebrow reveal">Verify · certificates · members</p>
+        <h1 class="page-title reveal">Verification <span>Portal</span></h1>
+        <p class="page-lead reveal">A modern public verification portal for certificates, members, volunteers, and project participation records.</p>
+      </div>
+    </section>
+
+    <section class="section content-section">
+      <div class="container center">
+        <p class="eyebrow reveal">Certificate · membership · participation</p>
+        <h2 class="section-title reveal">Verification interface ready for backend integration.</h2>
+        <p class="section-lead reveal">This page is designed for certificate verification, member ID checking, project participation confirmation, and downloadable proof of participation.</p>
+        <form class="search-box reveal" onsubmit="event.preventDefault(); this.classList.add('submitted');">
+          <input type="text" placeholder="Enter Certificate ID / Member ID / CNIC reference" required />
+          <button class="btn btn-primary magnetic" type="submit">Verify</button>
+        </form>
+      </div>
+      <div class="container" style="margin-top:54px">
+        <div class="content-grid">
+          <article class="content-card reveal">
+            <span class="num">01</span>
+            <h3>Certificate Verification</h3>
+            <p>Check training, workshop, participation, and leadership program certificates.</p>
+          </article>
+          <article class="content-card reveal">
+            <span class="num">02</span>
+            <h3>Member Verification</h3>
+            <p>Validate membership ID, volunteer status, or official YPP association when connected with the backend.</p>
+          </article>
+          <article class="content-card reveal">
+            <span class="num">03</span>
+            <h3>Project Participation</h3>
+            <p>Confirm participation in youth campaigns, seminars, trainings, and community service activities.</p>
+          </article>
+        </div>
+        <div class="cta-strip reveal"><div><h2>Backend ready</h2><p>The UI is prepared for database search, QR codes, certificates, admin approval, and secure verification logs.</p></div><a class="btn btn-secondary magnetic" href="reports.html">View Reports</a></div>
+      </div>
+    </section>
+
+  </main>
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <img class="footer-logo" src="assets/logo-white-hd.png" alt="Youth Parliament Pakistan logo" />
+        <p>Premium animated redesign prototype for Youth Parliament Pakistan.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a><a href="reports.html">Reports</a><a href="members.html">Members</a><a href="verification.html">Verification</a><a href="projects.html">Projects</a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
