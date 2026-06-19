@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" fill="none">
+  <!-- Red outer border on V shape -->
+  <path d="M160,495 C152,470 30,120 10,30 L10,10 L80,10 C100,70 145,190 160,240 C175,190 220,70 240,10 L310,10 L310,30 C290,120 168,470 160,495 Z" stroke="#e81c2e" stroke-width="7" fill="none"/>
+  <!-- Yellow fill on V shape -->
+  <path d="M160,480 C154,460 40,130 22,35 L22,22 L72,22 C92,75 142,188 160,232 C178,188 228,75 248,22 L298,22 L298,35 C280,130 166,460 160,480 Z" fill="#fcc30b" opacity=".85"/>
+  <!-- Blue rings -->
+  <ellipse cx="160" cy="310" rx="120" ry="24" stroke="#1a4fd6" stroke-width="5" fill="none"/>
+  <ellipse cx="160" cy="355" rx="90" ry="18" stroke="#1a4fd6" stroke-width="4" fill="none"/>
+  <ellipse cx="160" cy="390" rx="60" ry="13" stroke="#1a4fd6" stroke-width="3.5" fill="none"/>
+</svg>
