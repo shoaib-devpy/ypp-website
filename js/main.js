@@ -64,14 +64,17 @@ document.querySelectorAll('.counter-grid').forEach(el => counterObserver.observe
 
 const slides = document.querySelectorAll('.slider-slide');
 const dots = document.querySelectorAll('.slider-dot');
+const leaders = document.querySelectorAll('.showcase-leader');
 if (slides.length > 1) {
   let current = 0;
   function goToSlide(index) {
     slides[current].classList.remove('active');
     dots[current]?.classList.remove('active');
+    leaders[current]?.classList.remove('active');
     current = index % slides.length;
     slides[current].classList.add('active');
     dots[current]?.classList.add('active');
+    leaders[current]?.classList.add('active');
   }
   dots.forEach((dot, i) => dot.addEventListener('click', () => { goToSlide(i); }));
   setInterval(() => goToSlide(current + 1), 4000);
