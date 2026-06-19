@@ -122,9 +122,9 @@ button,input,select{font:inherit}
 @media (max-width:980px){.bio-card{grid-template-columns:1fr}.bio-photo img{max-width:300px}}
 @media (max-width:640px){.bio-card{padding:24px}.bio-quote{padding:16px 18px;font-size:16px}}
 .nav-btn{background:linear-gradient(135deg,var(--primary),#e6b800) !important;color:#1a1a1a !important;border-radius:999px;padding:10px 20px !important;font-weight:900;box-shadow:0 6px 20px rgba(212,162,0,.25);transition:.25s ease}.nav-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(212,162,0,.3) !important;background:linear-gradient(135deg,#e6b800,var(--primary)) !important}
-.header-social{display:flex;align-items:center;gap:4px;margin-left:8px}.header-social a{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;color:var(--muted);transition:.25s ease}.header-social a:hover{background:var(--surface);color:var(--primary)}
+.header-social{display:none}.header-social a{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;color:var(--muted);transition:.25s ease}.header-social a:hover{background:var(--surface);color:var(--primary)}
 .footer-social{display:flex;gap:10px}.footer-social a{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);color:var(--muted);transition:.25s ease}.footer-social a:hover{background:var(--primary);color:#1a1a1a;border-color:var(--primary)}
-.footer-grid{display:flex;justify-content:space-between;align-items:start;gap:30px}.footer-links{display:flex;flex-direction:column;gap:8px;color:var(--muted)}
+.footer-grid{display:flex;justify-content:space-between;align-items:start;gap:30px}.footer-links{display:grid;grid-template-columns:1fr 1fr;gap:6px 32px;color:var(--muted)}
 .reports-section{background:linear-gradient(180deg,transparent,rgba(21,166,106,.03),transparent)}
 .reports-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
 .report-card{position:relative;display:flex;flex-direction:column;padding:28px;border-radius:26px;background:#ffffff;border:1px solid var(--line);box-shadow:var(--shadow);transition:.35s ease;text-decoration:none;color:inherit;overflow:hidden}
