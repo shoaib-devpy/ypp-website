@@ -3,7 +3,160 @@ const progress = document.querySelector('.progress');
 const cursorGlow = document.querySelector('.cursor-glow');
 const navToggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.nav');
+const navDropdownToggles = document.querySelectorAll('.nav-dropdown-toggle');
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+window.YPP = window.YPP || {};
+const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+const isHomePage = currentPage === 'index.html' || currentPage === '';
+const memberModal = document.querySelector('[data-member-modal]');
+const memberModalTriggers = document.querySelectorAll('[data-open-member-modal]');
+const memberModalCloseTargets = document.querySelectorAll('[data-member-modal-close]');
+const memberForm = memberModal?.querySelector('.member-form');
+let memberModalLastFocus = null;
+let memberModalCloseTimer = null;
+
+window.YPP.buildYouTubeEmbedUrl = (input) => {
+  if (!input) return '';
+  if (!input.startsWith('http')) {
+    return `https://www.youtube-nocookie.com/embed/${input}`;
+  }
+
+  try {
+    const url = new URL(input);
+    const videoId = url.searchParams.get('v') || url.pathname.split('/').filter(Boolean).pop();
+    return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : '';
+  } catch {
+    return '';
+  }
+};
+
+function closeDropdowns(){
+  document.querySelectorAll('.nav-dropdown.open').forEach((dropdown) => {
+    dropdown.classList.remove('open');
+    dropdown.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+  });
+}
+
+function syncProgramMenus(){
+  const programLinks = [
+    { key: 'wazirAzam', slug: 'program-nojawano-ka-wazir-e-azam.html' },
+    { key: 'floodRehab', slug: 'program-oic.html' },
+    { key: 'humanRights', slug: 'program-human-rights-education.html' },
+    { key: 'democracy', slug: 'program-youth-action-for-democracy.html' },
+    { key: 'umeedJawan', slug: 'program-umeed-e-jawan.html' },
+    { key: 'activeCitizens', slug: 'program-active-citizens.html' }
+  ];
+  document.querySelectorAll('.nav-dropdown-menu').forEach((menu) => {
+    const overviewActive = window.location.pathname.endsWith('programs.html');
+    const linksHtml = [
+      `<a${overviewActive ? ' class="active"' : ''} href="programs.html">Programs Overview</a>`,
+      ...programLinks.map(({ key, slug }) => {
+        const active = window.location.pathname.endsWith(slug);
+        const label = window.YPP_PROGRAMS?.[key]?.title || slug;
+        return `<a${active ? ' class="active"' : ''} href="${slug}">${label}</a>`;
+      })
+    ].join('');
+    menu.innerHTML = linksHtml;
+  });
+}
+
+function syncHeaderState(){
+  const brand = document.querySelector('.site-header .brand');
+  if (brand && !isHomePage) {
+    brand.setAttribute('href', 'index.html');
+  }
+
+  document.querySelectorAll('.site-header .nav > a, .site-header .nav > .nav-dropdown > .nav-dropdown-toggle').forEach((item) => {
+    item.classList.remove('active');
+  });
+
+  const activeSelectorMap = [
+    { match: ['about.html'], selector: '.site-header .nav > a[href="about.html"]' },
+    { match: ['programs.html'], selector: '.site-header .nav > .nav-dropdown > .nav-dropdown-toggle' },
+    { match: ['reports.html'], selector: '.site-header .nav > a[href="reports.html"]' },
+    { match: ['gallery.html'], selector: '.site-header .nav > a[href="gallery.html"]' },
+    { match: ['verify.html', 'verification.html'], selector: '.site-header .nav > a[href="verify.html"]' }
+  ];
+
+  const programPageMatch = /^program-(active-citizens|oic|human-rights-education|youth-action-for-democracy|umeed-e-jawan|nojawano-ka-wazir-e-azam)\.html$/.test(currentPage);
+  if (programPageMatch) {
+    document.querySelector('.site-header .nav > .nav-dropdown > .nav-dropdown-toggle')?.classList.add('active');
+  } else {
+    const mapping = activeSelectorMap.find(({ match }) => match.includes(currentPage));
+    if (mapping) {
+      document.querySelector(mapping.selector)?.classList.add('active');
+    }
+  }
+}
+
+function openMemberModal(){
+  if (!memberModal) return;
+  if (memberModalCloseTimer) {
+    clearTimeout(memberModalCloseTimer);
+    memberModalCloseTimer = null;
+  }
+  history.replaceState(null, '', `${window.location.pathname}${window.location.search}#join-member`);
+  memberModalLastFocus = document.activeElement;
+  memberModal.hidden = false;
+  memberModal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+  requestAnimationFrame(() => memberModal.classList.add('open'));
+  const firstField = memberModal.querySelector('input, select, textarea, button');
+  firstField?.focus();
+}
+
+function closeMemberModal(){
+  if (!memberModal || memberModal.hidden) return;
+  memberModal.classList.remove('open');
+  memberModal.setAttribute('aria-hidden', 'true');
+  if (memberModalCloseTimer) clearTimeout(memberModalCloseTimer);
+  memberModalCloseTimer = window.setTimeout(() => {
+    memberModal.hidden = true;
+    document.body.classList.remove('modal-open');
+    memberForm?.classList.remove('submitted');
+    memberForm?.reset();
+    history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+    if (memberModalLastFocus instanceof HTMLElement) {
+      memberModalLastFocus.focus();
+    }
+    memberModalCloseTimer = null;
+  }, 250);
+}
+
+memberModalTriggers.forEach((trigger) => {
+  trigger.addEventListener('click', () => {
+    if (memberModal) {
+      openMemberModal();
+      return;
+    }
+    window.location.href = 'index.html#join-member';
+  });
+});
+
+memberModalCloseTargets.forEach((target) => {
+  target.addEventListener('click', closeMemberModal);
+});
+
+memberModal?.addEventListener('click', (event) => {
+  if (event.target === memberModal) {
+    closeMemberModal();
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && memberModal && !memberModal.hidden) {
+    closeMemberModal();
+  }
+});
+
+memberForm?.addEventListener('submit', (event) => {
+  event.preventDefault();
+  if (!memberForm.checkValidity()) {
+    memberForm.reportValidity();
+    return;
+  }
+  memberForm.classList.add('submitted');
+});
 
 function updateProgress(){
   const scrollTop = window.scrollY;
@@ -16,11 +169,33 @@ updateProgress();
 navToggle?.addEventListener('click', () => {
   const isOpen = nav.classList.toggle('open');
   navToggle.setAttribute('aria-expanded', String(isOpen));
+  if(!isOpen) closeDropdowns();
 });
-nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+nav?.addEventListener('click', (event) => {
+  const link = event.target.closest('a');
+  if (!link || !nav.contains(link)) return;
   nav.classList.remove('open');
   navToggle?.setAttribute('aria-expanded', 'false');
-}));
+  closeDropdowns();
+});
+
+navDropdownToggles.forEach((toggle) => {
+  toggle.addEventListener('click', (event) => {
+    event.preventDefault();
+    const dropdown = toggle.closest('.nav-dropdown');
+    const isOpen = dropdown?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+  });
+});
+
+document.addEventListener('click', (event) => {
+  document.querySelectorAll('.nav-dropdown.open').forEach((dropdown) => {
+    if (!dropdown.contains(event.target)) {
+      dropdown.classList.remove('open');
+      dropdown.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
 
 if(!prefersReduced && cursorGlow){
   window.addEventListener('pointermove', (e) => {
@@ -37,7 +212,18 @@ const revealObserver = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold:.16, rootMargin:'0px 0px -8% 0px' });
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+window.observeReveals = (root = document) => {
+  root.querySelectorAll('.reveal:not(.visible)').forEach(el => revealObserver.observe(el));
+};
+window.observeReveals(document);
+
+syncHeaderState();
+window.addEventListener('DOMContentLoaded', syncProgramMenus);
+window.addEventListener('DOMContentLoaded', () => {
+  if (memberModal && window.location.hash === '#join-member') {
+    openMemberModal();
+  }
+});
 
 function animateCounter(el){
   const target = Number(el.dataset.count || 0);

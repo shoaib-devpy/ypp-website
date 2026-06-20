@@ -17,17 +17,32 @@
   <div class="progress" aria-hidden="true"></div>
 
   <header class="site-header" data-blur>
-    <a class="brand brand-logo" href="index.html" aria-label="Youth Parliament Pakistan home">
+    <a class="brand brand-logo" href="#top" aria-label="Youth Parliament Pakistan home">
       <img src="assets/logo.png" alt="Youth Parliament Pakistan logo" />
     </a>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">Menu</button>
     <nav class="nav" aria-label="Main navigation">
-      <a class="active" href="about.html">About</a>
-      <a href="index.html#programs">Programs</a>
+      <a href="about.html">About us</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+          Programs
+          <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="programs.html">Programs Overview</a>
+          <a href="program-active-citizens.html">Active Citizens of Pakistan</a>
+          <a href="program-oic.html">Organisation of Islamic Confrences (O.I.C.)</a>
+          <a href="program-human-rights-education.html">Human Rights Education</a>
+          <a href="program-youth-action-for-democracy.html">Youth Action for Democracy</a>
+          <a href="program-umeed-e-jawan.html">Umeed -e- Jawan</a>
+          <a href="program-community-engagement.html">Community Engagement</a>
+          <a href="program-volunteer-programs.html">Volunteer Programs</a>
+        </div>
+      </div>
       <a href="reports.html">Reports</a>
       <a href="gallery.html">Gallery</a>
       <a href="verify.html">Verify</a>
-      <a class="nav-btn" href="index.html#join">Join</a>
+      <button class="nav-btn" type="button" data-open-member-modal>Join as Member</button>
     </nav>
     <div class="header-social">
       <a href="https://www.facebook.com/YouthPPakistan" target="_blank" rel="noopener" aria-label="Facebook">
@@ -70,6 +85,103 @@
             <p>Youth Parliament of Pakistan is conceived, conceptualized and planned to execute with a vision to empower the people of Pakistan focusing on youth with the ability to understand the importance of their role in community services and to nurture their leadership qualities to pave the way for establishment of a democratic society.</p>
           </div>
         </div>
+
+        <!-- <section class="aim-section" style="margin-top:54px">
+          <div class="center">
+            <p class="eyebrow reveal">Our Goals</p>
+            <h2 class="section-title reveal">What We Aim to Achieve</h2>
+            <span class="aim-divider" aria-hidden="true"></span>
+          </div>
+
+          <div class="aim-layout">
+            <div class="aim-column aim-column-left">
+              <article class="aim-card reveal">
+                <div class="aim-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 0-4 4c0 1.7 1 3.1 2.4 3.8V13h3.2V10.8A4 4 0 0 0 12 3Z"/><path d="M12 13v8"/><path d="M9 21h6"/></svg>
+                </div>
+                <div>
+                  <h3>Democratic Governance & Civic Participation</h3>
+                  <p>Promoting democratic values, constitutional awareness, civic engagement, and active citizenship among young people through parliamentary simulations, policy dialogue, and institutional learning.</p>
+                </div>
+              </article>
+              <article class="aim-card reveal">
+                <div class="aim-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-4 7-11a7 7 0 1 0-14 0c0 7 7 11 7 11z"/><path d="M9.5 10.5 11.5 12.5 15 9"/></svg>
+                </div>
+                <div>
+                  <h3>Human Rights, Social Justice & Inclusion</h3>
+                  <p>Advancing awareness and protection of human rights with a focus on gender equality, minority rights, child protection, and social inclusion of marginalized communities.</p>
+                </div>
+              </article>
+              <article class="aim-card reveal">
+                <div class="aim-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15v-4"/><path d="M12 15V8"/><path d="M16 15v-6"/><path d="M20 5l-7 7-3-3-6 6"/></svg>
+                </div>
+                <div>
+                  <h3>Youth Leadership Development & Capacity Building</h3>
+                  <p>Strengthening leadership competencies, critical thinking, communication skills, ethical leadership, and civic responsibility among youth through structured training and mentorship programs.</p>
+                </div>
+              </article>
+            </div>
+
+            <div class="aim-target reveal" aria-hidden="true">
+              <svg class="aim-target-svg" viewBox="0 0 420 420" role="img" aria-label="Target illustration">
+                <defs>
+                  <linearGradient id="aimBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#6f8dff" />
+                    <stop offset="100%" stop-color="#1f4eea" />
+                  </linearGradient>
+                  <filter id="aimGlow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#1f4eea" flood-opacity=".12"/>
+                  </filter>
+                  <marker id="aimArrowHead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+                    <path d="M0,0 L12,6 L0,12 z" fill="#2f61ff" />
+                  </marker>
+                </defs>
+                <circle cx="210" cy="210" r="158" fill="none" stroke="rgba(47,97,255,.15)" stroke-width="1.5" stroke-dasharray="4 8" />
+                <circle cx="210" cy="210" r="132" fill="none" stroke="rgba(47,97,255,.25)" stroke-width="18" />
+                <circle cx="210" cy="210" r="96" fill="none" stroke="#edf2ff" stroke-width="18" />
+                <circle cx="210" cy="210" r="62" fill="none" stroke="url(#aimBlue)" stroke-width="18" filter="url(#aimGlow)" />
+                <circle cx="210" cy="210" r="18" fill="#2f61ff" />
+                <line x1="255" y1="165" x2="316" y2="104" stroke="#2f61ff" stroke-width="16" stroke-linecap="round" marker-end="url(#aimArrowHead)" filter="url(#aimGlow)" />
+                <circle cx="136" cy="154" r="6" fill="#2f61ff" />
+                <circle cx="292" cy="136" r="6" fill="#b9c8ff" />
+                <circle cx="128" cy="274" r="6" fill="#b9c8ff" />
+                <circle cx="306" cy="282" r="6" fill="#b9c8ff" />
+              </svg>
+            </div>
+
+            <div class="aim-column aim-column-right">
+              <article class="aim-card reveal">
+                <div class="aim-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 15h6l2-3 3 5 5-8"/><path d="M20 19v-4"/></svg>
+                </div>
+                <div>
+                  <h3>Policy Research, Dialogue & Advocacy</h3>
+                  <p>Facilitating evidence-based policy discussions, youth-led research, and dialogue platforms that enable young people to contribute to national policy development and reform processes.</p>
+                </div>
+              </article>
+              <article class="aim-card reveal">
+                <div class="aim-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19v-7"/><path d="M10 19V5"/><path d="M16 19v-9"/><path d="M22 19v-13"/></svg>
+                </div>
+                <div>
+                  <h3>Electoral Awareness & Civic Education</h3>
+                  <p>Promoting voter education, electoral awareness, democratic participation, and informed citizenship to strengthen participatory democracy in Pakistan.</p>
+                </div>
+              </article>
+              <article class="aim-card reveal">
+                <div class="aim-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19c2.5-5 5-7.5 8-7.5S17.5 14 20 19"/><path d="M12 11.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19 4l1 3 3 1"/><path d="M5 4 4 7 1 8"/></svg>
+                </div>
+                <div>
+                  <h3>Youth-Led Development & Community Empowerment</h3>
+                  <p>Supporting youth-driven initiatives that address local development challenges in education, health, poverty alleviation, and social welfare through community-based action.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section> -->
 
         <div class="container center" style="margin-top:54px">
           <p class="eyebrow reveal">Thematic areas</p>
@@ -120,11 +232,11 @@
       </div>
       <div class="footer-links">
         <a href="about.html">About</a>
-        <a href="index.html#programs">Programs</a>
+        <a href="programs.html">Programs</a>
         <a href="reports.html">Reports</a>
         <a href="gallery.html">Gallery</a>
         <a href="verify.html">Verify</a>
-        <a class="nav-btn" href="index.html#join">Join</a>
+        <a class="nav-btn" href="index.html#join-member">Join</a>
       </div>
       <div class="footer-social">
         <a href="https://www.facebook.com/YouthPPakistan" target="_blank" rel="noopener" aria-label="Facebook">
