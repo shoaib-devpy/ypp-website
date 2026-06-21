@@ -17,29 +17,37 @@
   <div class="progress" aria-hidden="true"></div>
 
   <header class="site-header" data-blur>
-    <a class="brand brand-logo" href="#top" aria-label="Youth Parliament Pakistan home">
+    <a class="brand brand-logo" href="index.html" aria-label="Youth Parliament Pakistan home">
       <img src="assets/logo.png" alt="Youth Parliament Pakistan logo" />
     </a>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">Menu</button>
     <nav class="nav" aria-label="Main navigation">
-      <a href="about.html">About us</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+          About us
+          <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="about.html">Our History</a>
+          <a href="leadership.html">Leadership</a>
+          <a href="core-team.html">Core Team</a>
+        </div>
+      </div>
       <div class="nav-dropdown">
         <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
           Programs
           <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <div class="nav-dropdown-menu">
+        <div class="nav-dropdown-menu" data-programs>
           <a href="programs.html">Programs Overview</a>
           <a href="program-active-citizens.html">Active Citizens of Pakistan</a>
-          <a href="program-oic.html">Organisation of Islamic Confrences (O.I.C.)</a>
+          <a href="program-oic.html">Organisation of Islamic Conferences</a>
           <a href="program-human-rights-education.html">Human Rights Education</a>
           <a href="program-youth-action-for-democracy.html">Youth Action for Democracy</a>
-          <a href="program-umeed-e-jawan.html">Umeed -e- Jawan</a>
-          <a href="program-community-engagement.html">Community Engagement</a>
-          <a href="program-volunteer-programs.html">Volunteer Programs</a>
+          <a href="program-umeed-e-jawan.html">Umeed-e-Jawan</a>
         </div>
       </div>
-      <a href="reports.html">Reports</a>
+      <a href="reports.html">Global Engagements</a>
       <a href="gallery.html">Gallery</a>
       <a href="verify.html">Verify</a>
       <button class="nav-btn" type="button" data-open-member-modal>Join as Member</button>
@@ -66,63 +74,77 @@
       <div class="orb orb-two" aria-hidden="true"></div>
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="page-hero-content reveal">
-        <p class="eyebrow">Publications & documentation</p>
-        <h1 class="page-title">Official <span>Reports</span></h1>
-        <p class="page-lead">Download and read YPP's official delegation reports, visit summaries, and organizational publications.</p>
+        <p class="eyebrow">Global engagements</p>
+        <h1 class="page-title">Global <span>Engagements</span></h1>
+        <p class="page-lead">YPP's international delegations, partnerships, and visit documentation organized by country.</p>
       </div>
     </section>
 
     <section class="section content-section">
       <div class="container">
-        <div class="reports-grid">
-          <a class="report-card reveal" href="reports/UK Report 2025.pdf" target="_blank">
-            <div class="report-icon">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-            </div>
-            <h3>UK Report 2025</h3>
-            <p>Latest United Kingdom delegation and engagement report.</p>
-            <span class="report-badge">PDF</span>
-          </a>
-          <a class="report-card reveal" href="reports/2024 UK visit Report.pdf" target="_blank">
-            <div class="report-icon">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-            </div>
-            <h3>UK Visit Report 2024</h3>
-            <p>Official delegation report from the 2024 United Kingdom visit.</p>
-            <span class="report-badge">PDF</span>
-          </a>
-          <a class="report-card reveal" href="reports/UK Report 2023.pdf" target="_blank">
-            <div class="report-icon">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-            </div>
-            <h3>UK Report 2023</h3>
-            <p>Annual UK visit and partnership engagement documentation.</p>
-            <span class="report-badge">PDF</span>
-          </a>
-          <a class="report-card reveal" href="reports/UK Report 2022.pdf" target="_blank">
-            <div class="report-icon">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-            </div>
-            <h3>UK Report 2022</h3>
-            <p>YPP delegation report from the 2022 United Kingdom visit.</p>
-            <span class="report-badge">PDF</span>
-          </a>
-          <a class="report-card reveal" href="reports/USA UN Visit Report.pdf" target="_blank">
-            <div class="report-icon">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-            </div>
-            <h3>USA UN Visit Report</h3>
-            <p>Official report from the YPP delegation visit to the United Nations, USA.</p>
-            <span class="report-badge">PDF</span>
-          </a>
-          <a class="report-card reveal" href="reports/next-generation-report.pdf" target="_blank">
-            <div class="report-icon">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-            </div>
-            <h3>Next Generation Report</h3>
-            <p>Youth Parliament Pakistan next generation leadership and vision report.</p>
-            <span class="report-badge">PDF</span>
-          </a>
+        <div class="country-layout">
+          <div class="country-tabs">
+            <button class="country-tab active" data-country="all">All Countries</button>
+            <button class="country-tab" data-country="uk">United Kingdom</button>
+            <button class="country-tab" data-country="usa">United States</button>
+            <button class="country-tab" data-country="general">General</button>
+          </div>
+          <div class="country-reports" id="countryReports">
+            <a class="report-card reveal" href="reports/UK Report 2025.pdf" target="_blank" data-country="uk">
+              <div class="report-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              </div>
+              <h3>UK Report 2025</h3>
+              <p>Latest United Kingdom delegation and engagement report.</p>
+              <span class="report-badge">PDF</span>
+              <img class="country-landmark" src="assets/landmark-uk.svg" alt="" aria-hidden="true" />
+            </a>
+            <a class="report-card reveal" href="reports/2024 UK visit Report.pdf" target="_blank" data-country="uk">
+              <div class="report-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              </div>
+              <h3>UK Visit Report 2024</h3>
+              <p>Official delegation report from the 2024 United Kingdom visit.</p>
+              <span class="report-badge">PDF</span>
+              <img class="country-landmark" src="assets/landmark-uk.svg" alt="" aria-hidden="true" />
+            </a>
+            <a class="report-card reveal" href="reports/UK Report 2023.pdf" target="_blank" data-country="uk">
+              <div class="report-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              </div>
+              <h3>UK Report 2023</h3>
+              <p>Annual UK visit and partnership engagement documentation.</p>
+              <span class="report-badge">PDF</span>
+              <img class="country-landmark" src="assets/landmark-uk.svg" alt="" aria-hidden="true" />
+            </a>
+            <a class="report-card reveal" href="reports/UK Report 2022.pdf" target="_blank" data-country="uk">
+              <div class="report-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              </div>
+              <h3>UK Report 2022</h3>
+              <p>YPP delegation report from the 2022 United Kingdom visit.</p>
+              <span class="report-badge">PDF</span>
+              <img class="country-landmark" src="assets/landmark-uk.svg" alt="" aria-hidden="true" />
+            </a>
+            <a class="report-card reveal" href="reports/USA UN Visit Report.pdf" target="_blank" data-country="usa">
+              <div class="report-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              </div>
+              <h3>USA UN Visit Report</h3>
+              <p>Official report from the YPP delegation visit to the United Nations, USA.</p>
+              <span class="report-badge">PDF</span>
+              <img class="country-landmark" src="assets/landmark-usa.svg" alt="" aria-hidden="true" />
+            </a>
+            <a class="report-card reveal" href="reports/next-generation-report.pdf" target="_blank" data-country="general">
+              <div class="report-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              </div>
+              <h3>Next Generation Report</h3>
+              <p>Youth Parliament Pakistan next generation leadership and vision report.</p>
+              <span class="report-badge">PDF</span>
+              <img class="country-landmark" src="assets/landmark-pk.svg" alt="" aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -136,7 +158,7 @@
       </div>
       <div class="footer-links">
         <a href="programs.html">Programs</a>
-        <a href="reports.html">Reports</a>
+        <a href="reports.html">Global Engagements</a>
         <a href="gallery.html">Gallery</a>
         <a href="verify.html">Verify</a>
         <a class="nav-btn" href="index.html#join-member">Join</a>
@@ -159,5 +181,26 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+  const hash = window.location.hash.replace('#','');
+  document.querySelectorAll('.country-tab').forEach(tab => {
+    if (hash && tab.dataset.country === hash) {
+      document.querySelector('.country-tab.active')?.classList.remove('active');
+      tab.classList.add('active');
+    }
+    tab.addEventListener('click', () => {
+      document.querySelector('.country-tab.active').classList.remove('active');
+      tab.classList.add('active');
+      const country = tab.dataset.country;
+      document.querySelectorAll('#countryReports .report-card').forEach(card => {
+        card.style.display = (country === 'all' || card.dataset.country === country) ? '' : 'none';
+      });
+    });
+  });
+  if (hash) {
+    const activeTab = document.querySelector(`.country-tab[data-country="${hash}"]`);
+    if (activeTab) activeTab.click();
+  }
+  </script>
 </body>
 </html>

@@ -157,8 +157,8 @@ window.YPP_PROGRAMS = {
       'Through workshops, seminars, community dialogues, awareness sessions, and educational outreach activities, the programme engaged students, youth leaders, educators, and community representatives in meaningful discussions on human rights issues.',
       'The project contributed to strengthening civic awareness, promoting tolerance and inclusion, and encouraging active participation in building a more equitable and rights-respecting society.'
     ],
-    heroImage: 'assets/pakistan-youth-group.png',
-    heroAlt: 'Youth Parliament Pakistan event photo',
+    heroImage: 'reports/12A9A47E-78F1-40F4-AF0A-82B92F1F858F.png',
+    heroAlt: 'Know Your Rights — Human Rights Education Programme',
     focus: [
       {
         title: 'Awareness',

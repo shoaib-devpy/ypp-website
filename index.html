@@ -22,24 +22,32 @@
     </a>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">Menu</button>
     <nav class="nav" aria-label="Main navigation">
-      <a href="about.html">About us</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+          About us
+          <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="about.html">Our History</a>
+          <a href="leadership.html">Leadership</a>
+          <a href="core-team.html">Core Team</a>
+        </div>
+      </div>
       <div class="nav-dropdown">
         <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
           Programs
           <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <div class="nav-dropdown-menu">
-          <a href="programs.html">Programs Overview</a>
+        <div class="nav-dropdown-menu" data-programs>
           <a href="program-active-citizens.html">Active Citizens of Pakistan</a>
-          <a href="program-oic.html">Organisation of Islamic Confrences (O.I.C.)</a>
+          <a href="program-oic.html">Organisation of Islamic Conferences</a>
           <a href="program-human-rights-education.html">Human Rights Education</a>
           <a href="program-youth-action-for-democracy.html">Youth Action for Democracy</a>
-          <a href="program-umeed-e-jawan.html">Umeed -e- Jawan</a>
-          <a href="program-community-engagement.html">Community Engagement</a>
-          <a href="program-volunteer-programs.html">Volunteer Programs</a>
+          <a href="program-umeed-e-jawan.html">Umeed-e-Jawan</a>
+          <a href="program-nojawano-ka-wazir-e-azam.html">Kon Hoga Nojawano Ka Wazir-e-Azam</a>
         </div>
       </div>
-      <a href="reports.html">Reports</a>
+      <a href="reports.html">Global Engagements</a>
       <a href="gallery.html">Gallery</a>
       <a href="verify.html">Verify</a>
       <button class="nav-btn" type="button" data-open-member-modal>Join as Member</button>
@@ -89,13 +97,13 @@
               <img src="reports/WhatsApp Image 2026-06-19 at 20.45.24.jpeg" alt="Chairman, Youth Parliament Pakistan" />
             </div>
             <div class="slider-slide">
+              <img src="reports/c0943570-5aba-46a0-b9b3-57e7a5186ec9.jpg" alt="Dr. Abdul Rahim Babar Dogar — Vice Chairman, Youth Parliament Pakistan" />
+            </div>
+            <div class="slider-slide">
               <img src="reports/WhatsApp Image 2026-06-19 at 19.55.41.jpeg" alt="Ubaid — President, Youth Parliament Pakistan" />
             </div>
             <div class="slider-slide">
               <img src="reports/694904d1-23bd-47b3-b7d7-e228d5d30c51.jpg" alt="Hammad Malik — General Secretary, Youth Parliament Pakistan" />
-            </div>
-            <div class="slider-slide">
-              <img src="reports/c0943570-5aba-46a0-b9b3-57e7a5186ec9.jpg" alt="Dr. Abdul Rahim Babar Dogar — Vice Chairman, Youth Parliament Pakistan" />
             </div>
           </div>
           <div class="showcase-pill pill-a">Policy Dialogue</div>
@@ -112,30 +120,30 @@
               </div>
             </div>
             <div class="showcase-leader" data-slide="1">
+              <img src="reports/c0943570-5aba-46a0-b9b3-57e7a5186ec9.jpg" alt="Dr. Abdul Rahim Babar Dogar" />
+              <div class="leader-info">
+                <strong>Dr. Abdul Rahim Babar Dogar</strong>
+                <small>Vice Chairman, YPP</small>
+                <p>Distinguished academic professional, visionary youth leader, and dedicated public servant.</p>
+                <a href="leadership.html#dr-abdul-rahim-babar-dogar" class="leader-more">Read More →</a>
+              </div>
+            </div>
+            <div class="showcase-leader" data-slide="2">
               <img src="reports/WhatsApp Image 2026-06-19 at 19.55.41.jpeg" alt="Ubaid" />
               <div class="leader-info">
-                <strong>Ubaid Qureshi</strong>
+                <strong>Ubaid-Ur-Rehman Qureshi</strong>
                 <small>President, YPP</small>
                 <p>Bridging the gap between youth and policymaking across Pakistan.</p>
                 <a href="leadership.html#ubaid" class="leader-more">Read More →</a>
               </div>
             </div>
-            <div class="showcase-leader" data-slide="2">
+            <div class="showcase-leader" data-slide="3">
               <img src="reports/694904d1-23bd-47b3-b7d7-e228d5d30c51.jpg" alt="Hammad Malik" />
               <div class="leader-info">
                 <strong>Hammad Malik</strong>
                 <small>General Secretary, YPP</small>
                 <p>Empowering young Pakistanis to drive positive change through civic leadership.</p>
                 <a href="leadership.html#hammad-malik" class="leader-more">Read More →</a>
-              </div>
-            </div>
-            <div class="showcase-leader" data-slide="3">
-              <img src="reports/c0943570-5aba-46a0-b9b3-57e7a5186ec9.jpg" alt="Dr. Abdul Rahim Babar Dogar" />
-              <div class="leader-info">
-                <strong>Dr. Abdul Rahim Babar Dogar</strong>
-                <small>Vice Chairman, YPP</small>
-                <p>Dr. Babar Dogar is a distinguished academic professional, visionary youth leader, and dedicated public servant with over two decades of impactful service.</p>
-                <a href="leadership.html#dr-abdul-rahim-babar-dogar" class="leader-more">Read More →</a>
               </div>
             </div>
           </div>
@@ -174,18 +182,30 @@
     <section id="partners" class="section partners-section">
       <div class="container">
         <p class="eyebrow reveal">Partners & collaborators</p>
-        <h2 class="section-title reveal">Accreditations & Partner Organization</h2>
-        <div class="partner-logos-grid">
-          <figure class="partner-logo-card reveal"><img src="assets/partnerlogos/1.png" alt="Partner logo 1" loading="lazy" /></figure>
-          <figure class="partner-logo-card reveal"><img src="assets/partnerlogos/2.png" alt="Partner logo 2" loading="lazy" /></figure>
-          <figure class="partner-logo-card reveal"><img src="assets/partnerlogos/3.png" alt="Partner logo 3" loading="lazy" /></figure>
-          <figure class="partner-logo-card reveal"><img src="assets/partnerlogos/4.png" alt="Partner logo 4" loading="lazy" /></figure>
-          <figure class="partner-logo-card reveal"><img src="assets/partnerlogos/5.png" alt="Partner logo 5" loading="lazy" /></figure>
-          <figure class="partner-logo-card reveal"><img src="assets/partnerlogos/6.png" alt="Partner logo 6" loading="lazy" /></figure>
-          <figure class="partner-logo-card reveal"><img src="assets/partnerlogos/7.png" alt="Partner logo 7" loading="lazy" /></figure>
-          <figure class="partner-logo-card reveal"><img src="assets/partnerlogos/8.png" alt="Partner logo 8" loading="lazy" /></figure>
-          <figure class="partner-logo-card reveal"><img src="assets/partnerlogos/9.png" alt="Partner logo 9" loading="lazy" /></figure>
-          <figure class="partner-logo-card reveal"><img src="assets/partnerlogos/10.png" alt="Partner logo 10" loading="lazy" /></figure>
+        <h2 class="section-title reveal">Accreditations & Partner Organizations</h2>
+        <div class="partner-scroll reveal">
+          <div class="partner-track">
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/1.png" alt="Partner logo" loading="lazy" /></figure>
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/2.png" alt="Partner logo" loading="lazy" /></figure>
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/3.png" alt="Partner logo" loading="lazy" /></figure>
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/4.png" alt="Partner logo" loading="lazy" /></figure>
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/5.png" alt="Partner logo" loading="lazy" /></figure>
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/6.png" alt="Partner logo" loading="lazy" /></figure>
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/7.png" alt="Partner logo" loading="lazy" /></figure>
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/8.png" alt="Partner logo" loading="lazy" /></figure>
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/9.png" alt="Partner logo" loading="lazy" /></figure>
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/10.png" alt="Partner logo" loading="lazy" /></figure>
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/1.png" alt="Partner logo" loading="lazy" /></figure>
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/2.png" alt="Partner logo" loading="lazy" /></figure>
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/3.png" alt="Partner logo" loading="lazy" /></figure>
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/4.png" alt="Partner logo" loading="lazy" /></figure>
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/5.png" alt="Partner logo" loading="lazy" /></figure>
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/6.png" alt="Partner logo" loading="lazy" /></figure>
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/7.png" alt="Partner logo" loading="lazy" /></figure>
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/8.png" alt="Partner logo" loading="lazy" /></figure>
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/9.png" alt="Partner logo" loading="lazy" /></figure>
+            <figure class="partner-logo-card"><img src="assets/partnerlogos/10.png" alt="Partner logo" loading="lazy" /></figure>
+          </div>
         </div>
       </div>
     </section>
@@ -193,21 +213,21 @@
     <section id="impact" class="section impact-section">
       <div class="container impact-layout">
         <div class="impact-visual reveal">
-          <div class="image-stack">
-            <img src="assets/pakistan-youth-group.png" alt="Youth Parliament Pakistan youth group concept" loading="lazy" />
-            <img src="https://youthparliament.org.pk/wp-content/uploads/2024/01/10496049_10152423308843881_4152101786621146224_o-scaled.jpg" alt="Youth Parliament Pakistan group activity" loading="lazy" />
+          <div class="image-stack" id="imageStack">
+            <img src="reports/MyBloodP+.png" alt="My Blood Group is P+ Pakistani" loading="lazy" />
+            <img src="reports/GroupPhotoYYP.jpeg" alt="YPP Group Photo" loading="lazy" />
           </div>
         </div>
         <div class="impact-content">
-          <p class="eyebrow reveal">Impact story</p>
+          <p class="eyebrow reveal">Guiding Philosophy</p>
           <h2 class="section-title reveal">A visual story that represents Pakistan’s youth energy.</h2>
           <p class="reveal">
-            The website uses a cinematic hero, group imagery, animated stats, and elegant glass effects to make the organization feel modern, credible, and nationally inspiring.
+            Our program is built on four pillars: Inform, Inspire, Invigorate, and Involve. We aim to empower the youth of Pakistan by creating informed, motivated, energetic, and engaged young leaders who can contribute positively to society and the nation's future.
           </p>
           <div class="counter-grid reveal">
-            <div><strong data-count="400">0</strong><span>festival guests</span></div>
-            <div><strong data-count="155120">0</strong><span>members claim</span></div>
-            <div><strong data-count="8">0</strong><span>core themes</span></div>
+            <div><strong data-count="1000" data-suffix="+">0</strong><span>Overseas Members</span></div>
+            <div><strong data-count="73120">0</strong><span>Members</span></div>
+            <div><strong data-count="4">0</strong><span>Core Pillars</span></div>
           </div>
         </div>
       </div>
@@ -221,7 +241,7 @@
           <div class="contact-meta">
             <div class="contact-meta-item">
               <span>Email</span>
-              <a href="mailto:info@ypp.org">info@ypp.org</a>
+              <a href="mailto:info@ypp.org.pk">info@ypp.org.pk</a>
             </div>
             <div class="contact-meta-item">
               <span>Phone Number</span>
@@ -235,11 +255,12 @@
           </div>
         </div>
         <form class="join-form" onsubmit="event.preventDefault(); this.classList.add('submitted');">
-          <label>Name<input required type="text" placeholder="Your name" /></label>
-          <label>Email<input required type="email" placeholder="you@example.com" /></label>
-          <label>Description<textarea required rows="4" placeholder="Write your message"></textarea></label>
+          <label>Full Name<input required type="text" placeholder="e.g. Ahmed Khan" /></label>
+          <label>Email Address<input required type="email" placeholder="e.g. ahmed@gmail.com" /></label>
+          <label>Subject<input type="text" placeholder="e.g. Partnership inquiry" /></label>
+          <label>Message<textarea required placeholder="Tell us how we can help you or share your thoughts about YPP..."></textarea></label>
           <button class="btn btn-primary magnetic" type="submit">Send Message</button>
-          <p class="success-msg">Thanks. This contact form is ready to connect with your backend.</p>
+          <p class="success-msg">Thank you! Your message has been received. We'll get back to you soon.</p>
         </form>
       </div>
     </section>
@@ -260,15 +281,15 @@
           </label>
           <label class="member-field">
             <span>Name</span>
-            <input required type="text" name="fullName" placeholder="Your name" />
+            <input required type="text" name="fullName" placeholder="e.g. Ahmed Khan" />
           </label>
           <label class="member-field">
             <span>Father Name</span>
-            <input required type="text" name="fatherName" placeholder="Father name" />
+            <input required type="text" name="fatherName" placeholder="e.g. Muhammad Khan" />
           </label>
           <label class="member-field">
             <span>CNIC or Passport</span>
-            <input required type="text" name="identityNumber" placeholder="CNIC or passport number" />
+            <input required type="text" name="identityNumber" placeholder="e.g. 35201-1234567-8" />
           </label>
           <label class="member-field">
             <span>Province</span>
@@ -285,7 +306,7 @@
           </label>
           <label class="member-field">
             <span>City</span>
-            <input required type="text" name="city" placeholder="Your city" />
+            <input required type="text" name="city" placeholder="e.g. Lahore" />
           </label>
           <div class="member-field field-full">
             <span>Contact Number</span>
@@ -303,11 +324,11 @@
           </div>
           <label class="member-field field-full">
             <span>Mail Address</span>
-            <textarea required name="mailAddress" rows="3" placeholder="House, street, area, postal code"></textarea>
+            <textarea required name="mailAddress" rows="2" placeholder="e.g. House 12, Street 5, Gulberg III, Lahore 54000"></textarea>
           </label>
           <label class="member-field">
             <span>Email Address</span>
-            <input required type="email" name="emailAddress" placeholder="you@example.com" />
+            <input required type="email" name="emailAddress" placeholder="e.g. ahmed@gmail.com" />
           </label>
           <label class="member-field">
             <span>Blood Group</span>
@@ -325,11 +346,11 @@
           </label>
           <label class="member-field field-full">
             <span>Why you join us (Description)</span>
-            <textarea required name="whyJoin" rows="4" placeholder="Tell us why you want to join Youth Parliament Pakistan"></textarea>
+            <textarea required name="whyJoin" rows="3" placeholder="e.g. I want to contribute to civic leadership and youth empowerment in Pakistan..."></textarea>
           </label>
           <label class="member-field">
             <span>Profession</span>
-            <input required type="text" name="profession" placeholder="Your profession" />
+            <input required type="text" name="profession" placeholder="e.g. Software Engineer" />
           </label>
           <label class="member-field field-full">
             <span>CV Upload</span>
@@ -337,7 +358,7 @@
           </label>
           <div class="member-actions field-full">
             <button class="btn btn-primary magnetic" type="submit">Submit Application</button>
-            <p class="member-form-feedback">Thanks. This membership form is ready to connect with your backend.</p>
+            <p class="member-form-feedback">Thank you! Your membership application has been received. We'll review and get back to you soon.</p>
           </div>
         </form>
       </div>

@@ -39,20 +39,18 @@ function closeDropdowns(){
 
 function syncProgramMenus(){
   const programLinks = [
-    { key: 'wazirAzam', slug: 'program-nojawano-ka-wazir-e-azam.html' },
-    { key: 'floodRehab', slug: 'program-oic.html' },
-    { key: 'humanRights', slug: 'program-human-rights-education.html' },
-    { key: 'democracy', slug: 'program-youth-action-for-democracy.html' },
-    { key: 'umeedJawan', slug: 'program-umeed-e-jawan.html' },
-    { key: 'activeCitizens', slug: 'program-active-citizens.html' }
+    { slug: 'program-active-citizens.html', label: 'Active Citizens of Pakistan' },
+    { slug: 'program-oic.html', label: 'Organisation of Islamic Conferences' },
+    { slug: 'program-human-rights-education.html', label: 'Human Rights Education' },
+    { slug: 'program-youth-action-for-democracy.html', label: 'Youth Action for Democracy' },
+    { slug: 'program-umeed-e-jawan.html', label: 'Umeed-e-Jawan' },
+    { slug: 'program-nojawano-ka-wazir-e-azam.html', label: 'Kon Hoga Nojawano Ka Wazir-e-Azam' },
   ];
-  document.querySelectorAll('.nav-dropdown-menu').forEach((menu) => {
+  document.querySelectorAll('.nav-dropdown-menu[data-programs]').forEach((menu) => {
     const overviewActive = window.location.pathname.endsWith('programs.html');
     const linksHtml = [
-      `<a${overviewActive ? ' class="active"' : ''} href="programs.html">Programs Overview</a>`,
-      ...programLinks.map(({ key, slug }) => {
+      ...programLinks.map(({ slug, label }) => {
         const active = window.location.pathname.endsWith(slug);
-        const label = window.YPP_PROGRAMS?.[key]?.title || slug;
         return `<a${active ? ' class="active"' : ''} href="${slug}">${label}</a>`;
       })
     ].join('');
@@ -233,7 +231,8 @@ function animateCounter(el){
     const progress = Math.min(1, (now - start) / duration);
     const eased = 1 - Math.pow(1 - progress, 3);
     const value = Math.floor(target * eased);
-    el.textContent = target > 999 ? value.toLocaleString() : value;
+    const suffix = el.dataset.suffix || '';
+    el.textContent = (target > 999 ? value.toLocaleString() : value) + suffix;
     if(progress < 1) requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
@@ -287,5 +286,12 @@ if(!prefersReduced){
       btn.style.transform = `translate(${x * .12}px, ${y * .16}px)`;
     });
     btn.addEventListener('pointerleave', () => btn.style.transform = '');
+  });
+}
+
+const imageStack = document.getElementById('imageStack');
+if (imageStack) {
+  imageStack.addEventListener('click', () => {
+    imageStack.classList.toggle('swapped');
   });
 }
