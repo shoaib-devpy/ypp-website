@@ -13,8 +13,8 @@ window.YPP_PROGRAMS = {
       'The initiative reflects YPP’s commitment to promoting democratic values, civic awareness, and youth engagement in mainstream media, while encouraging responsible and solution-oriented discourse among young citizens.',
       'The programme has played an important role in bridging the gap between youth and decision-making processes by giving them visibility in national media and encouraging them to think like future leaders.'
     ],
-    heroImage: 'assets/pakistan-youth-group.png',
-    heroAlt: 'Pakistani youth group photo',
+    heroImage: 'reports/wazerazam.png',
+    heroAlt: 'Kon Ho Ga Nojawano Ka Wazir-e-Azam',
     focus: [
       {
         title: 'Governance dialogue',
@@ -71,8 +71,8 @@ window.YPP_PROGRAMS = {
       'As a result of this initiative, members of the Youth Parliament of Pakistan successfully implemented 127 Social Action Projects across Pakistan, including Gilgit-Baltistan and Azad Jammu & Kashmir.',
       'The programme contributed significantly to strengthening youth-led development and community resilience by enabling young people to become agents of positive change within their local communities.'
     ],
-    heroImage: 'assets/pakistan-youth-group.png',
-    heroAlt: 'Youth Parliament Pakistan youth group',
+    heroImage: 'reports/ACP.png',
+    heroAlt: 'Active Citizens of Pakistan',
     focus: [
       {
         title: '127 SAP projects',
@@ -117,7 +117,7 @@ window.YPP_PROGRAMS = {
       'The initiative stands as one of the most significant humanitarian contributions associated with Youth Parliament of Pakistan and demonstrated the organization’s commitment to serving communities during times of crisis.',
       'In recognition of these humanitarian efforts and contributions toward disaster recovery, Chairman Abrar-ul-Haq was honoured by the Organization of Islamic Cooperation and designated as its first Humanitarian Ambassador.'
     ],
-    heroImage: 'reports/WhatsApp Image 2026-06-19 at 19.55.39.jpeg',
+    heroImage: 'reports/oic_modern_village_rehabilitation.png',
     heroAlt: 'Youth Parliament Pakistan flood rehabilitation image',
     focus: [
       {
@@ -216,8 +216,8 @@ window.YPP_PROGRAMS = {
       'The programme focused on educating young citizens about voter registration procedures, electoral processes, polling mechanisms, and the roles and responsibilities of election officials.',
       'Through this initiative, approximately 500,000 new young voters were mobilized and registered, contributing to increased youth participation in Pakistan’s democratic process.'
     ],
-    heroImage: 'reports/WhatsApp Image 2026-06-19 at 19.55.40.jpeg',
-    heroAlt: 'Hammad Malik portrait',
+    heroImage: 'reports/Strengthening democratic participation and informed electoral engagement..png',
+    heroAlt: 'Strengthening democratic participation and informed electoral engagement',
     focus: [
       {
         title: '500,000 youth voters',
@@ -265,8 +265,8 @@ window.YPP_PROGRAMS = {
       'Vocational training programmes focused on embroidery, stitching, and income-generation skills designed to improve livelihoods and create pathways toward economic empowerment.',
       'The project culminated in the Southern Punjab Youth Festival held in Multan on 16 April 2015, bringing together beneficiaries from 11 Youth Resource Centres. More than 400 participants and guests attended the event, showcasing vocational products and celebrating youth achievements.'
     ],
-    heroImage: 'reports/WhatsApp Image 2026-06-19 at 19.55.41.jpeg',
-    heroAlt: 'Youth Parliament Pakistan member portrait',
+    heroImage: 'reports/umeed_e_jawan_usaid_funded.png',
+    heroAlt: 'Umeed-e-Jawan — USAID Funded Youth Empowerment',
     focus: [
       {
         title: 'Four districts covered',

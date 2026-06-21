@@ -57,20 +57,17 @@
       videoEl.innerHTML = data.videos.map((item) => {
         const embedUrl = item.kind === 'website' ? '' : (item.embedUrl || window.YPP?.buildYouTubeEmbedUrl?.(item.videoId || item.href));
         if (embedUrl) {
+          const vidId = item.videoId || (item.href?.match(/[?&]v=([^&]+)/)?.[1]) || '';
+          const thumbUrl = vidId ? `https://img.youtube.com/vi/${vidId}/hqdefault.jpg` : '';
           return `
             <article class="report-card program-video-card reveal">
-              <div class="program-video-media">
-                <iframe
-                  src="${embedUrl}"
-                  title="${item.title}"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen></iframe>
+              <div class="program-video-media yt-thumb" data-yt="${vidId}" style="cursor:pointer">
+                <img src="${thumbUrl}" alt="${item.title}" style="width:100%;height:100%;object-fit:cover;display:block" />
+                <button class="yt-play" aria-label="Play video" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:48px;border:0;background:none;cursor:pointer;padding:0"><svg viewBox="0 0 68 48"><path d="M66.5 7.7s-.7-4.7-2.8-6.8C60.7-2 57.2-2 55.6-2.2 46.4-3 34-3 34-3s-12.4 0-21.6 1C10.8-1.8 7.3-1.8 4.3 1.1 2.2 3.2 1.5 7.9 1.5 7.9S.8 13.4.8 19v5.2c0 5.6.7 11.1.7 11.1s.7 4.7 2.8 6.8c3 3 7 2.9 8.7 3.2 6.3.6 26.8.9 26.8.9s12.4 0 21.6-1c1.6-.2 5.1-.2 8.1-3.1 2.1-2.1 2.8-6.8 2.8-6.8s.7-5.5.7-11.1V19c0-5.6-.7-11.3-.7-11.3z" fill="#212121" fill-opacity=".8"/><path d="M45 24 27 14v20" fill="#fff"/></svg></button>
               </div>
               <div class="program-video-body">
                 <h3>${item.title}</h3>
                 <p>${item.text}</p>
-                ${item.href ? `<a class="program-video-source" href="${item.href}" target="_blank" rel="noopener">Open on YouTube</a>` : ''}
                 <span class="report-badge">VIDEO</span>
               </div>
             </article>
@@ -104,4 +101,11 @@
   }
 
   window.observeReveals?.(document);
+
+  document.querySelectorAll('.yt-thumb[data-yt]').forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      const id = thumb.dataset.yt;
+      if (id) window.open('https://www.youtube.com/watch?v=' + id, '_blank');
+    });
+  });
 })();
