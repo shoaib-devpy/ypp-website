@@ -195,6 +195,18 @@ document.addEventListener('click', (event) => {
   });
 });
 
+const bgSlides = document.querySelectorAll('.hero-bg-slide');
+if (bgSlides.length > 1) {
+  let bgCurrent = 0;
+  setInterval(() => {
+    bgSlides[bgCurrent].classList.remove('active');
+    leaders[bgCurrent]?.classList.remove('active');
+    bgCurrent = (bgCurrent + 1) % bgSlides.length;
+    bgSlides[bgCurrent].classList.add('active');
+    leaders[bgCurrent]?.classList.add('active');
+  }, 5000);
+}
+
 if(!prefersReduced && cursorGlow){
   window.addEventListener('pointermove', (e) => {
     cursorGlow.style.left = `${e.clientX}px`;

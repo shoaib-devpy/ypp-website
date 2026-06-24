@@ -124,6 +124,26 @@ button,input,select{font:inherit}
 /* --- Final refinements: original-color Y logo + upgraded hero showcase --- */
 .brand-logo img{height:62px;width:auto;object-fit:contain;filter:drop-shadow(0 6px 14px rgba(0,0,0,.1))}
 .footer-logo{height:62px;width:auto;object-fit:contain;filter:drop-shadow(0 4px 10px rgba(0,0,0,.06))}
+.hero-fullwidth{position:relative;min-height:100vh;display:grid;place-items:center;overflow:hidden}
+.hero-bg-slider{position:absolute;inset:0;z-index:0}
+.hero-bg-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.5s ease}
+.hero-bg-slide.active{opacity:1}
+.hero-bg-slide img,.hero-bg-slide video{width:100%;height:100%;object-fit:cover}
+.hero-bg-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.4) 50%,rgba(0,0,0,.6))}
+.hero-fullwidth-content{position:relative;z-index:2;width:min(1160px,calc(100% - 40px));margin-inline:auto;padding:140px 0 100px;text-align:center}
+.hero-fullwidth-content .eyebrow{color:var(--primary)}
+.hero-fullwidth-content .hero-title{color:#fff;max-width:900px;margin-inline:auto}
+.hero-fullwidth-content .hero-title span{background:linear-gradient(90deg,var(--primary),#e6b800);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.15em}
+.hero-fullwidth-content .hero-copy{color:rgba(255,255,255,.8);max-width:700px;margin-inline:auto}
+.hero-fullwidth-content .hero-actions{justify-content:center}
+.hero-fullwidth-content .btn-secondary{background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.25)}
+.hero-fullwidth-content .showcase-leaders{max-width:500px;margin:40px auto 0}
+.hero-fullwidth-content .showcase-leader{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);backdrop-filter:blur(20px)}
+.hero-fullwidth-content .leader-info strong{color:#fff}
+.hero-fullwidth-content .leader-info p{color:rgba(255,255,255,.65)}
+.hero-fullwidth-content .leader-more{color:var(--primary)}
+.hero-fullwidth .scroll-cue{color:rgba(255,255,255,.7)}
+.hero-fullwidth .scroll-cue i{background:linear-gradient(transparent,#fff,transparent)}
 .hero-photo-visual{min-height:640px;display:grid;place-items:center;perspective:1400px}
 .hero-showcase{position:relative;width:min(560px,90vw);padding:24px 24px 112px;border-radius:42px;background:linear-gradient(180deg,#ffffff,#f5f7f6);border:1px solid var(--line);box-shadow:0 20px 60px rgba(0,0,0,.08);overflow:visible;transform-style:preserve-3d;isolation:isolate}
 .showcase-glow{position:absolute;inset:auto 5% -8% 5%;height:160px;background:radial-gradient(circle at center,rgba(252,195,11,.08),rgba(21,166,106,.06) 35%,transparent 72%);filter:blur(24px);z-index:0}
@@ -160,6 +180,18 @@ button,input,select{font:inherit}
 .bio-quote{margin:20px 0 0;padding:20px 24px;border-left:4px solid var(--primary);background:rgba(212,162,0,.05);border-radius:0 16px 16px 0;font-style:italic;color:var(--text);font-size:18px;line-height:1.7}
 @media (max-width:980px){.bio-card{grid-template-columns:1fr}.bio-photo img{max-width:300px}}
 @media (max-width:640px){.bio-card{padding:24px}.bio-quote{padding:16px 18px;font-size:16px}}
+.doc-table{margin-top:48px;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:#fff;box-shadow:var(--shadow)}
+.doc-table-head{display:grid;grid-template-columns:1fr auto;padding:16px 24px;background:rgba(0,0,0,.03);border-bottom:1px solid var(--line);font-size:13px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.doc-table-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px;padding:20px 24px;border-bottom:1px solid var(--line);text-decoration:none;color:inherit;transition:.2s ease}
+.doc-table-row:last-child{border-bottom:0}
+.doc-table-row:hover{background:rgba(212,162,0,.04)}
+.doc-row-info{display:flex;align-items:start;gap:16px}
+.doc-row-icon{flex-shrink:0;color:var(--primary);margin-top:2px}
+.doc-row-info strong{display:block;font-size:16px;letter-spacing:-.02em;margin-bottom:4px}
+.doc-row-info p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+.doc-download-btn{display:inline-flex;align-items:center;padding:10px 20px;border-radius:999px;background:var(--primary);color:#1a1a1a;font-size:13px;font-weight:800;white-space:nowrap;transition:.25s ease}
+.doc-table-row:hover .doc-download-btn{box-shadow:0 6px 20px rgba(212,162,0,.25);transform:translateY(-1px)}
+@media (max-width:640px){.doc-table-row{grid-template-columns:1fr;gap:12px}.doc-download-btn{width:100%;justify-content:center}}
 .cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px}
 .cert-frame{background:#fff;border-radius:20px;border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden;transition:.4s ease}
 .cert-frame:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.12)}
@@ -175,6 +207,15 @@ button,input,select{font:inherit}
 .cert-label p{color:var(--muted);font-size:13px;line-height:1.6;margin:0}
 @media (max-width:980px){.cert-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.cert-grid{grid-template-columns:1fr}}
+.leader-card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.leader-card{display:flex;flex-direction:column;align-items:center;text-align:center;text-decoration:none;color:inherit;padding:24px 16px;border-radius:24px;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow);transition:.4s ease}
+.leader-card:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,.1);border-color:var(--primary)}
+.leader-card-photo{width:120px;height:120px;border-radius:50%;overflow:hidden;margin-bottom:16px;border:3px solid var(--primary)}
+.leader-card-photo img{width:100%;height:100%;object-fit:cover}
+.leader-card strong{font-size:16px;letter-spacing:-.02em}
+.leader-card small{color:var(--primary);font-size:13px;font-weight:700;margin-top:4px}
+@media (max-width:980px){.leader-card-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.leader-card-grid{grid-template-columns:1fr 1fr;gap:14px}.leader-card{padding:18px 12px}.leader-card-photo{width:90px;height:90px}}
 .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px}
 .team-card{position:relative;border-radius:28px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);transition:.4s ease}
 .team-card:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,.1)}
