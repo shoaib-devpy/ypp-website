@@ -34,9 +34,8 @@ Set these in the cPanel Node app:
 
 1. Upload the repo so the folder structure stays intact.
 2. Keep `admin/public/frontend` as a relative symlink to the repo root. Do not replace it with a copied folder.
-3. In the `admin` folder, run `npm install`.
-4. Run `npm run build`.
-5. Start or restart the Node app.
+3. In the `admin` folder, run `npm install`. The `postinstall` hook will build the app automatically on cPanel.
+4. Start or restart the Node app.
 
 ## What happens on first start
 
