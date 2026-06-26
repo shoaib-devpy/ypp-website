@@ -75,25 +75,15 @@
       <div class="orb orb-two" aria-hidden="true"></div>
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="page-hero-content reveal">
-        <p class="eyebrow">History of YPP</p>
-        <h1 class="page-title">Our <span>History</span></h1>
-        <p class="page-lead">Youth Parliament Pakistan is built around leadership, service, and youth empowerment.</p>
+        <p class="eyebrow" id="aboutEyebrow">History of YPP</p>
+        <h1 class="page-title" id="aboutTitle">Our <span>History</span></h1>
+        <p class="page-lead" id="aboutSubtitle">Youth Parliament Pakistan is built around leadership, service, and youth empowerment.</p>
       </div>
     </section>
 
     <section id="history" class="section content-section">
       <div class="container">
-        <div class="project-hero-card reveal">
-          <img src="assets/about-us-image.jpg" alt="Youth Parliament Pakistan youth group concept" />
-          <div>
-            <p class="eyebrow">History</p>
-            <h2>A platform created to inspire, empower, and engage young people.</h2>
-            <p>Youth Parliament of Pakistan is conceived, conceptualized and planned to execute with a vision to empower the youth of Pakistan with the ability to understand the importance of their role in community services and to nurture their leadership qualities.</p>
-            <p>YPP is a non-profit, non-political, non-religious program initiated to foster and translate talent and excellence of adolescents and youths of Pakistan into tangible action and community service and in the process provide a nursery for scientifically trained leaders and citizens of character and substance.</p>
-            <p>In the process the community’s abandoned, sick and underprivileged are linked and benefited in a relationship of symbiosis and interdependence with the youth of Pakistan.</p>
-            <p>Youth Parliament of Pakistan is conceived, conceptualized and planned to execute with a vision to empower the people of Pakistan focusing on youth with the ability to understand the importance of their role in community services and to nurture their leadership qualities to pave the way for establishment of a democratic society.</p>
-          </div>
-        </div>
+        <div class="project-hero-card reveal" id="aboutHeroCard"></div>
 
         <!-- <section class="aim-section" style="margin-top:54px">
           <div class="center">
@@ -192,43 +182,8 @@
           </div>
         </section> -->
 
-        <div class="container center" style="margin-top:54px">
-          <p class="eyebrow reveal">Thematic areas</p>
-          <h2 class="section-title reveal">Youth Parliament of Pakistan works in the following thematic areas</h2>
-        </div>
-
-        <div class="about-grid" style="margin-top:32px">
-          <article class="content-card reveal">
-            <span class="num">01</span>
-            <h3>Democratic Governance & Civic Participation</h3>
-            <p>Promoting democratic values, constitutional awareness, civic engagement, and active citizenship among young people through parliamentary simulations, policy dialogue, and institutional learning.</p>
-          </article>
-          <article class="content-card reveal">
-            <span class="num">02</span>
-            <h3>Human Rights, Social Justice & Inclusion</h3>
-            <p>Advancing awareness and protection of human rights with a focus on gender equality, minority rights, child protection, and social inclusion of marginalized communities.</p>
-          </article>
-          <article class="content-card reveal">
-            <span class="num">03</span>
-            <h3>Youth Leadership Development & Capacity Building</h3>
-            <p>Strengthening leadership competencies, critical thinking, communication skills, ethical leadership, and civic responsibility among youth through structured training and mentorship programs.</p>
-          </article>
-          <article class="content-card reveal">
-            <span class="num">04</span>
-            <h3>Policy Research, Dialogue & Advocacy</h3>
-            <p>Facilitating evidence-based policy discussions, youth-led research, and dialogue platforms that enable young people to contribute to national policy development and reform processes.</p>
-          </article>
-          <article class="content-card reveal">
-            <span class="num">05</span>
-            <h3>Electoral Awareness & Civic Education</h3>
-            <p>Promoting voter education, electoral awareness, democratic participation, and informed citizenship to strengthen participatory democracy in Pakistan.</p>
-          </article>
-          <article class="content-card reveal">
-            <span class="num">06</span>
-            <h3>Youth-Led Development & Community Empowerment</h3>
-            <p>Supporting youth-driven initiatives that address local development challenges in education, health, poverty alleviation, and social welfare through community-based action.</p>
-          </article>
-        </div>
+        <div id="aboutThematicHeader" class="container center" style="margin-top:54px"></div>
+        <div id="aboutThematicGrid" class="about-grid" style="margin-top:32px"></div>
       </div>
     </section>
 
@@ -266,5 +221,35 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+  fetch('/api/pages?key=about').then(r => r.json()).then(page => {
+    const c = page.content;
+    document.getElementById('aboutEyebrow').textContent = c.eyebrow;
+    document.getElementById('aboutTitle').innerHTML = page.title.replace(/(\w+)$/, '<span>$1</span>');
+    document.getElementById('aboutSubtitle').textContent = page.subtitle;
+
+    document.getElementById('aboutHeroCard').innerHTML = `
+      <img src="${c.heroImage}" alt="Youth Parliament Pakistan" />
+      <div>
+        <p class="eyebrow">${c.sectionEyebrow}</p>
+        <h2>${c.sectionTitle}</h2>
+        ${c.paragraphs.map(p => `<p>${p}</p>`).join('')}
+      </div>
+    `;
+
+    document.getElementById('aboutThematicHeader').innerHTML = `
+      <p class="eyebrow reveal visible">Thematic areas</p>
+      <h2 class="section-title reveal visible">${c.thematicTitle}</h2>
+    `;
+
+    document.getElementById('aboutThematicGrid').innerHTML = c.thematicAreas.map((a, i) => `
+      <article class="content-card reveal visible">
+        <span class="num">0${i + 1}</span>
+        <h3>${a.title}</h3>
+        <p>${a.text}</p>
+      </article>
+    `).join('');
+  }).catch(() => {});
+  </script>
 </body>
 </html>

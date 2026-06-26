@@ -83,62 +83,7 @@
 
     <section class="section content-section">
       <div class="container">
-        <div class="team-grid">
-          <div class="team-card reveal">
-            <div class="team-photo">
-              <img src="reports/Fasil Jamshed - Coordinator KPK.jpeg" alt="Fasil Jamshed" loading="lazy" />
-            </div>
-            <div class="team-info">
-              <h3>Fasil Jamshed</h3>
-              <span>Coordinator KPK</span>
-            </div>
-          </div>
-          <div class="team-card reveal">
-            <div class="team-photo">
-              <img src="reports/Qaiser Jamil - Coordinator AJK.jpeg" alt="Qaiser Jamil" loading="lazy" />
-            </div>
-            <div class="team-info">
-              <h3>Qaiser Jamil</h3>
-              <span>Coordinator AJK</span>
-            </div>
-          </div>
-          <div class="team-card reveal">
-            <div class="team-photo">
-              <img src="reports/Zobia Khurshid - Executive Member.jpeg" alt="Zobia Khurshid" loading="lazy" />
-            </div>
-            <div class="team-info">
-              <h3>Zobia Khurshid</h3>
-              <span>Executive Member</span>
-            </div>
-          </div>
-          <div class="team-card reveal">
-            <div class="team-photo">
-              <img src="reports/Bakhtwar Mahmood - Executive Member.jpeg" alt="Bakhtwar Mahmood" loading="lazy" />
-            </div>
-            <div class="team-info">
-              <h3>Bakhtwar Mahmood</h3>
-              <span>Executive Member</span>
-            </div>
-          </div>
-          <div class="team-card reveal">
-            <div class="team-photo">
-              <img src="reports/Hira Bilal - Executive Member.jpeg" alt="Hira Bilal" loading="lazy" />
-            </div>
-            <div class="team-info">
-              <h3>Hira Bilal</h3>
-              <span>Executive Member</span>
-            </div>
-          </div>
-          <div class="team-card reveal">
-            <div class="team-photo">
-              <img src="reports/Sidra Akhtar - Exective Member.jpeg" alt="Sidra Akhtar" loading="lazy" />
-            </div>
-            <div class="team-info">
-              <h3>Sidra Akhtar</h3>
-              <span>Executive Member</span>
-            </div>
-          </div>
-        </div>
+        <div class="team-grid" id="teamGrid"></div>
       </div>
     </section>
   </main>
@@ -174,5 +119,20 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+  fetch('/api/core-team').then(r => r.json()).then(team => {
+    const grid = document.getElementById('teamGrid');
+    if (!team.length) { grid.innerHTML = '<p style="text-align:center;color:#aaa;padding:40px;grid-column:1/-1">No team members yet.</p>'; return; }
+    team.forEach(m => {
+      const card = document.createElement('div');
+      card.className = 'team-card reveal visible';
+      card.innerHTML = `
+        <div class="team-photo">${m.photo_path ? `<img src="${m.photo_path}" alt="${m.full_name}" loading="lazy" />` : `<div style="height:100%;background:#e8e8e8;display:grid;place-items:center;font-size:48px;color:#aaa">${m.full_name[0]}</div>`}</div>
+        <div class="team-info"><h3>${m.full_name}</h3><span>${m.designation}</span></div>
+      `;
+      grid.appendChild(card);
+    });
+  }).catch(() => {});
+  </script>
 </body>
 </html>

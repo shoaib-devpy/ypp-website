@@ -3,10 +3,17 @@
 const NAV = [
   { label: 'Dashboard', href: '/admin', icon: '📊' },
   { label: 'Slider', href: '/admin/slider', icon: '🎞' },
+  { label: 'Programs', href: '/admin/programs', icon: '📚' },
   { label: 'Gallery', href: '/admin/gallery', icon: '🖼' },
+  { label: 'Contact', href: '/admin/contact', icon: '✉️' },
+  { label: 'Engagements', href: '/admin/engagements', icon: '🌍' },
   { label: 'Applications', href: '/admin/applications', icon: '📋' },
+  { label: 'Leadership', href: '/admin/leadership', icon: '👔' },
+  { label: 'Core Team', href: '/admin/core-team', icon: '🏛' },
   { label: 'Members', href: '/admin/members', icon: '👥' },
+  { label: 'Partners', href: '/admin/partners', icon: '🤝' },
   { label: 'Certificates', href: '/admin/certificates-manage', icon: '📜' },
+  { label: 'Pages', href: '/admin/pages', icon: '📄' },
   { label: 'Settings', href: '/admin/email-settings', icon: '⚙️' },
 ];
 

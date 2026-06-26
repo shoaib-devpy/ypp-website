@@ -16,6 +16,12 @@ export async function POST(req) {
   const token = await createToken({ id: user.id, email: user.email, name: user.name });
 
   const res = NextResponse.json({ success: true, name: user.name });
-  res.cookies.set('ypp_admin_token', token, { httpOnly: true, maxAge: 86400, path: '/' });
+  res.cookies.set('ypp_admin_token', token, {
+    httpOnly: true,
+    maxAge: 86400,
+    path: '/',
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production',
+  });
   return res;
 }

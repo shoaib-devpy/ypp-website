@@ -1,0 +1,8 @@
+.DS_Store
+*.log
+.env
+.env.*
+
+admin/.next/
+admin/node_modules/
+admin/public/uploads/*

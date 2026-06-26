@@ -158,28 +158,7 @@
         <p class="eyebrow reveal">Partners & collaborators</p>
         <h2 class="section-title reveal">Accreditations & Partner Organizations</h2>
         <div class="partner-scroll reveal">
-          <div class="partner-track">
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/1.png" alt="Partner logo" loading="lazy" /></figure>
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/2.png" alt="Partner logo" loading="lazy" /></figure>
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/3.png" alt="Partner logo" loading="lazy" /></figure>
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/4.png" alt="Partner logo" loading="lazy" /></figure>
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/5.png" alt="Partner logo" loading="lazy" /></figure>
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/6.png" alt="Partner logo" loading="lazy" /></figure>
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/7.png" alt="Partner logo" loading="lazy" /></figure>
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/8.png" alt="Partner logo" loading="lazy" /></figure>
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/9.png" alt="Partner logo" loading="lazy" /></figure>
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/10.png" alt="Partner logo" loading="lazy" /></figure>
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/1.png" alt="Partner logo" loading="lazy" /></figure>
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/2.png" alt="Partner logo" loading="lazy" /></figure>
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/3.png" alt="Partner logo" loading="lazy" /></figure>
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/4.png" alt="Partner logo" loading="lazy" /></figure>
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/5.png" alt="Partner logo" loading="lazy" /></figure>
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/6.png" alt="Partner logo" loading="lazy" /></figure>
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/7.png" alt="Partner logo" loading="lazy" /></figure>
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/8.png" alt="Partner logo" loading="lazy" /></figure>
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/9.png" alt="Partner logo" loading="lazy" /></figure>
-            <figure class="partner-logo-card"><img src="assets/partnerlogos/10.png" alt="Partner logo" loading="lazy" /></figure>
-          </div>
+          <div class="partner-track" id="partnerTrack"></div>
         </div>
       </div>
     </section>
@@ -188,21 +167,15 @@
       <div class="container impact-layout">
         <div class="impact-visual reveal">
           <div class="image-stack" id="imageStack">
-            <img src="reports/MyBloodP+.png" alt="My Blood Group is P+ Pakistani" loading="lazy" />
-            <img src="reports/GroupPhotoYYP.jpeg" alt="YPP Group Photo" loading="lazy" />
+            <img id="impactImg1" src="" alt="" loading="lazy" />
+            <img id="impactImg2" src="" alt="" loading="lazy" />
           </div>
         </div>
         <div class="impact-content">
-          <p class="eyebrow reveal">Guiding Philosophy</p>
-          <h2 class="section-title reveal">A visual story that represents Pakistan’s youth energy.</h2>
-          <p class="reveal">
-            Our program is built on four pillars: Inform, Inspire, Invigorate, and Involve. We aim to empower the youth of Pakistan by creating informed, motivated, energetic, and engaged young leaders who can contribute positively to society and the nation's future.
-          </p>
-          <div class="counter-grid reveal">
-            <div><strong data-count="1000" data-suffix="+">0</strong><span>Overseas Members</span></div>
-            <div><strong data-count="73120">0</strong><span>Members</span></div>
-            <div><strong data-count="4">0</strong><span>Core Pillars</span></div>
-          </div>
+          <p class="eyebrow reveal" id="impactEyebrow"></p>
+          <h2 class="section-title reveal" id="impactTitle"></h2>
+          <p class="reveal" id="impactDesc"></p>
+          <div class="counter-grid reveal" id="impactCounters"></div>
         </div>
       </div>
     </section>
@@ -232,11 +205,11 @@
             </div>
           </div>
         </div>
-        <form class="join-form" onsubmit="event.preventDefault(); this.classList.add('submitted');">
-          <label>Full Name<input required type="text" placeholder="e.g. Ahmed Khan" /></label>
-          <label>Email Address<input required type="email" placeholder="e.g. ahmed@gmail.com" /></label>
-          <label>Subject<input type="text" placeholder="e.g. Partnership inquiry" /></label>
-          <label>Message<textarea required placeholder="Tell us how we can help you or share your thoughts about YPP..."></textarea></label>
+        <form class="join-form" id="contactForm">
+          <label>Full Name<input required type="text" name="contactName" placeholder="e.g. Ahmed Khan" /></label>
+          <label>Email Address<input required type="email" name="contactEmail" placeholder="e.g. ahmed@gmail.com" /></label>
+          <label>Subject<input type="text" name="contactSubject" placeholder="e.g. Partnership inquiry" /></label>
+          <label>Message<textarea required name="contactMessage" placeholder="Tell us how we can help you or share your thoughts about YPP..."></textarea></label>
           <button class="btn btn-primary magnetic" type="submit">Send Message</button>
           <p class="success-msg">Thank you! Your message has been received. We'll get back to you soon.</p>
         </form>
@@ -395,6 +368,50 @@
         allSlides[current].classList.add('active');
       }, 5000);
     }
+  }).catch(() => {});
+
+  // Load impact section
+  fetch('/api/pages?key=home_impact').then(r => r.json()).then(page => {
+    const c = page.content;
+    document.getElementById('impactEyebrow').textContent = c.eyebrow;
+    document.getElementById('impactTitle').textContent = page.title;
+    document.getElementById('impactDesc').textContent = c.description;
+    document.getElementById('impactImg1').src = c.image1;
+    document.getElementById('impactImg2').src = c.image2;
+    document.getElementById('impactCounters').innerHTML = c.counters.map(ct =>
+      `<div><strong data-count="${ct.value}"${ct.suffix ? ` data-suffix="${ct.suffix}"` : ''}>0</strong><span>${ct.label}</span></div>`
+    ).join('');
+  }).catch(() => {});
+
+  // Contact form
+  const contactForm = document.getElementById('contactForm');
+  contactForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = contactForm.querySelector('button');
+    btn.textContent = 'Sending...'; btn.disabled = true;
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          full_name: contactForm.querySelector('[name="contactName"]').value,
+          email: contactForm.querySelector('[name="contactEmail"]').value,
+          subject: contactForm.querySelector('[name="contactSubject"]').value,
+          message: contactForm.querySelector('[name="contactMessage"]').value,
+        }),
+      });
+      contactForm.classList.add('submitted');
+      contactForm.reset();
+    } catch { alert('Something went wrong.'); }
+    btn.textContent = 'Send Message'; btn.disabled = false;
+  });
+
+  // Load partners
+  fetch('/api/partners').then(r => r.json()).then(partners => {
+    const track = document.getElementById('partnerTrack');
+    if (!track || !partners.length) return;
+    const html = partners.map(p => `<figure class="partner-logo-card"><img src="${p.logo_path}" alt="${p.name}" loading="lazy" /></figure>`).join('');
+    track.innerHTML = html + html;
   }).catch(() => {});
   </script>
 </body>

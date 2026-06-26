@@ -1,7 +1,7 @@
 import { SignJWT, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
 
-const SECRET = new TextEncoder().encode('ypp-admin-secret-key-2024');
+const SECRET = new TextEncoder().encode(process.env.ADMIN_SESSION_SECRET || 'ypp-admin-secret-key-2024');
 
 export async function createToken(payload) {
   return new SignJWT(payload)

@@ -38,24 +38,15 @@ function closeDropdowns(){
 }
 
 function syncProgramMenus(){
-  const programLinks = [
-    { slug: 'program-active-citizens.html', label: 'Active Citizens of Pakistan' },
-    { slug: 'program-oic.html', label: 'Organisation of Islamic Conferences' },
-    { slug: 'program-human-rights-education.html', label: 'Human Rights Education' },
-    { slug: 'program-youth-action-for-democracy.html', label: 'Youth Action for Democracy' },
-    { slug: 'program-umeed-e-jawan.html', label: 'Umeed-e-Jawan' },
-    { slug: 'program-nojawano-ka-wazir-e-azam.html', label: 'Kon Hoga Nojawano Ka Wazir-e-Azam' },
-  ];
-  document.querySelectorAll('.nav-dropdown-menu[data-programs]').forEach((menu) => {
-    const overviewActive = window.location.pathname.endsWith('programs.html');
-    const linksHtml = [
-      ...programLinks.map(({ slug, label }) => {
-        const active = window.location.pathname.endsWith(slug);
-        return `<a${active ? ' class="active"' : ''} href="${slug}">${label}</a>`;
-      })
-    ].join('');
-    menu.innerHTML = linksHtml;
-  });
+  fetch('/api/programs').then(r => r.json()).then(programs => {
+    document.querySelectorAll('.nav-dropdown-menu[data-programs]').forEach((menu) => {
+      menu.innerHTML = programs.map(p => {
+        const href = `${p.slug}.html`;
+        const active = window.location.pathname.endsWith(href);
+        return `<a${active ? ' class="active"' : ''} href="${href}">${p.title.replace(/\s*\(\d{4}\)$/, '')}</a>`;
+      }).join('');
+    });
+  }).catch(() => {});
 }
 
 function syncHeaderState(){

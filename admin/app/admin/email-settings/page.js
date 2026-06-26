@@ -5,16 +5,26 @@ import Sidebar from '../Sidebar';
 
 export default function EmailSettingsPage() {
   const [form, setForm] = useState({ smtp_host: '', smtp_port: 587, smtp_user: '', smtp_pass: '', from_email: '', from_name: 'Youth Parliament Pakistan' });
+  const [social, setSocial] = useState({ facebook: '', instagram: '', twitter: '', linkedin: '' });
   const [msg, setMsg] = useState('');
+  const [socialMsg, setSocialMsg] = useState('');
   const [loading, setLoading] = useState(false);
+  const [socialLoading, setSocialLoading] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
     fetch('/api/auth/check').then(r => r.json()).then(data => {
       if (!data.authenticated) router.push('/admin/login');
-      else fetch('/api/email-settings').then(r => r.json()).then(cfg => {
-        if (cfg.smtp_host !== undefined) setForm(prev => ({ ...prev, ...cfg, smtp_pass: '' }));
-      });
+      else {
+        fetch('/api/email-settings').then(r => r.json()).then(cfg => {
+          if (cfg.smtp_host !== undefined) setForm(prev => ({ ...prev, ...cfg, smtp_pass: '' }));
+        });
+        fetch('/api/social').then(r => r.json()).then(links => {
+          const obj = {};
+          links.forEach(l => obj[l.platform] = l.url);
+          setSocial(prev => ({ ...prev, ...obj }));
+        });
+      }
     });
   }, []);
 
@@ -55,6 +65,27 @@ export default function EmailSettingsPage() {
             <li>Go to Google Account → Security → 2-Step Verification → App Passwords</li>
           </ul>
         </div>
+
+        <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '40px 0' }} />
+
+        <h2 style={{ fontSize: 22, fontWeight: 800, margin: '0 0 8px' }}>Social Media Links</h2>
+        <p style={{ margin: '0 0 20px', color: '#888', fontSize: 14 }}>Update social media URLs displayed on the website</p>
+
+        {socialMsg && <div style={{ padding: '10px 16px', borderRadius: 10, background: '#e8f5e9', color: '#2e7d32', fontWeight: 600, fontSize: 14, marginBottom: 16 }}>{socialMsg}</div>}
+
+        <form onSubmit={async (e) => {
+          e.preventDefault(); setSocialLoading(true); setSocialMsg('');
+          const links = Object.entries(social).map(([platform, url]) => ({ platform, url }));
+          const res = await fetch('/api/social', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ links }) });
+          setSocialMsg(res.ok ? 'Social links saved!' : 'Error saving');
+          setSocialLoading(false);
+        }} style={{ display: 'grid', gap: 14, padding: 28, background: '#fff', borderRadius: 20, border: '1px solid #e8e8e8', maxWidth: 700 }}>
+          <label style={{ display: 'grid', gap: 6, fontWeight: 700, fontSize: 13 }}>Facebook<input value={social.facebook} onChange={e => setSocial(p => ({ ...p, facebook: e.target.value }))} placeholder="https://www.facebook.com/..." style={{ padding: '12px 16px', borderRadius: 12, border: '1px solid #ddd', fontSize: 14 }} /></label>
+          <label style={{ display: 'grid', gap: 6, fontWeight: 700, fontSize: 13 }}>Instagram<input value={social.instagram} onChange={e => setSocial(p => ({ ...p, instagram: e.target.value }))} placeholder="https://www.instagram.com/..." style={{ padding: '12px 16px', borderRadius: 12, border: '1px solid #ddd', fontSize: 14 }} /></label>
+          <label style={{ display: 'grid', gap: 6, fontWeight: 700, fontSize: 13 }}>X (Twitter)<input value={social.twitter} onChange={e => setSocial(p => ({ ...p, twitter: e.target.value }))} placeholder="https://x.com/..." style={{ padding: '12px 16px', borderRadius: 12, border: '1px solid #ddd', fontSize: 14 }} /></label>
+          <label style={{ display: 'grid', gap: 6, fontWeight: 700, fontSize: 13 }}>LinkedIn<input value={social.linkedin} onChange={e => setSocial(p => ({ ...p, linkedin: e.target.value }))} placeholder="https://www.linkedin.com/company/..." style={{ padding: '12px 16px', borderRadius: 12, border: '1px solid #ddd', fontSize: 14 }} /></label>
+          <button disabled={socialLoading} style={{ padding: '14px 28px', borderRadius: 999, border: 0, background: '#d4a200', color: '#1a1a1a', fontWeight: 800, fontSize: 15, cursor: 'pointer' }}>{socialLoading ? 'Saving...' : 'Save Social Links'}</button>
+        </form>
       </main>
     </div>
   );
