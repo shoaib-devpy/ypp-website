@@ -71,16 +71,7 @@
 
   <main id="top">
     <section class="hero-fullwidth" aria-labelledby="hero-title">
-      <div class="hero-bg-slider">
-        <div class="hero-bg-slide active">
-          <img src="assets/pakistan-youth-group.png" alt="" />
-        </div>
-        <div class="hero-bg-slide">
-          <img src="reports/swiss.jpeg" alt="" />
-        </div>
-        <div class="hero-bg-slide">
-          <img src="reports/Strengthening democratic participation and informed electoral engagement..png" alt="" />
-        </div>
+      <div class="hero-bg-slider" id="heroBgSlider">
       </div>
       <div class="hero-bg-overlay"></div>
 
@@ -384,5 +375,27 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+  fetch('/api/slider').then(r => r.json()).then(slides => {
+    const slider = document.getElementById('heroBgSlider');
+    if (!slider || !slides.length) return;
+    slides.forEach((s, i) => {
+      const div = document.createElement('div');
+      div.className = 'hero-bg-slide' + (i === 0 ? ' active' : '');
+      div.innerHTML = `<img src="${s.file_path}" alt="${s.title || ''}" />`;
+      slider.appendChild(div);
+    });
+    // Start slider cycling
+    const allSlides = slider.querySelectorAll('.hero-bg-slide');
+    if (allSlides.length > 1) {
+      let current = 0;
+      setInterval(() => {
+        allSlides[current].classList.remove('active');
+        current = (current + 1) % allSlides.length;
+        allSlides[current].classList.add('active');
+      }, 5000);
+    }
+  }).catch(() => {});
+  </script>
 </body>
 </html>

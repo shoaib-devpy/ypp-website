@@ -147,13 +147,78 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-memberForm?.addEventListener('submit', (event) => {
+memberForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
   if (!memberForm.checkValidity()) {
     memberForm.reportValidity();
     return;
   }
-  memberForm.classList.add('submitted');
+
+  const btn = memberForm.querySelector('button[type="submit"]');
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+
+  try {
+    // Upload photo
+    let photoPath = null;
+    const photoInput = memberForm.querySelector('input[type="file"][accept="image/*"]');
+    if (photoInput?.files[0]) {
+      const fd = new FormData();
+      fd.append('file', photoInput.files[0]);
+      const upRes = await fetch('/api/upload', { method: 'POST', body: fd });
+      const upData = await upRes.json();
+      photoPath = upData.path;
+    }
+
+    // Upload CV
+    let cvPath = null;
+    const cvInput = memberForm.querySelector('input[type="file"][accept=".pdf,.doc,.docx"]');
+    if (cvInput?.files[0]) {
+      const fd = new FormData();
+      fd.append('file', cvInput.files[0]);
+      const upRes = await fetch('/api/upload', { method: 'POST', body: fd });
+      const upData = await upRes.json();
+      cvPath = upData.path;
+    }
+
+    const data = {
+      full_name: memberForm.querySelector('[name="fullName"]')?.value,
+      father_name: memberForm.querySelector('[name="fatherName"]')?.value,
+      cnic: memberForm.querySelector('[name="identityNumber"]')?.value,
+      province: memberForm.querySelector('[name="province"]')?.value,
+      city: memberForm.querySelector('[name="city"]')?.value,
+      country_code: memberForm.querySelector('[name="countryCode"]')?.value,
+      phone: memberForm.querySelector('[name="contactNumber"]')?.value,
+      email: memberForm.querySelector('[name="emailAddress"]')?.value,
+      blood_group: memberForm.querySelector('[name="bloodGroup"]')?.value,
+      profession: memberForm.querySelector('[name="profession"]')?.value,
+      why_join: memberForm.querySelector('[name="whyJoin"]')?.value,
+      mail_address: memberForm.querySelector('[name="mailAddress"]')?.value,
+      photo_path: photoPath,
+      cv_path: cvPath,
+    };
+
+    await fetch('/api/applications', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+    closeMemberModal();
+    // Show success modal
+    const successModal = document.createElement('div');
+    successModal.style.cssText = 'position:fixed;inset:0;z-index:400;display:grid;place-items:center;background:rgba(0,0,0,.5);backdrop-filter:blur(8px)';
+    successModal.innerHTML = `<div style="max-width:440px;padding:40px;background:#fff;border-radius:28px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.2)">
+      <div style="width:72px;height:72px;border-radius:50%;background:rgba(46,125,50,.1);display:grid;place-items:center;margin:0 auto 20px">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <h2 style="margin:0 0 10px;font-size:22px;font-weight:800">Application Submitted!</h2>
+      <p style="margin:0 0 24px;color:#666;line-height:1.6">Thank you! Your membership application has been received. We'll review and get back to you soon.</p>
+      <button onclick="this.closest('div[style]').parentElement.remove()" style="padding:14px 36px;border-radius:999px;border:0;background:#d4a200;color:#1a1a1a;font-weight:800;font-size:15px;cursor:pointer">Done</button>
+    </div>`;
+    document.body.appendChild(successModal);
+    successModal.addEventListener('click', (e) => { if (e.target === successModal) successModal.remove(); });
+  } catch (err) {
+    alert('Something went wrong. Please try again.');
+  }
+
+  btn.textContent = 'Submit Application';
+  btn.disabled = false;
 });
 
 function updateProgress(){

@@ -88,16 +88,33 @@
             <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           </div>
           <h2>Verify a Certificate or Membership</h2>
-          <p>Enter your membership ID or certificate number below to verify its authenticity.</p>
-          <form class="verify-form" onsubmit="event.preventDefault(); this.classList.add('submitted');">
+          <p>Enter your membership ID or CNIC number below to verify its authenticity.</p>
+          <form class="verify-form" id="verifyForm">
             <div class="verify-input-group">
-              <input required type="text" placeholder="Enter Membership ID or Certificate Number" />
+              <input required type="text" id="verifyInput" placeholder="Enter Membership ID or CNIC Number" />
               <button class="btn btn-primary magnetic" type="submit">Verify</button>
             </div>
           </form>
-          <div class="verify-result">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            <p>Verification system is being configured. Please contact YPP directly for immediate verification requests.</p>
+          <div id="verifyLoading" style="display:none;text-align:center;padding:20px;color:var(--muted)">Searching...</div>
+          <div id="verifyNotFound" style="display:none;padding:20px;border-radius:18px;background:rgba(229,57,53,.06);border:1px solid rgba(229,57,53,.15);text-align:center;margin-top:20px">
+            <p style="margin:0;color:#c62828;font-weight:700">No member found with this ID. Please check and try again.</p>
+          </div>
+          <div id="verifyFound" style="display:none;margin-top:20px">
+            <div style="padding:28px;border-radius:22px;background:rgba(21,166,106,.06);border:1px solid rgba(21,166,106,.15)">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;color:#2e7d32;font-weight:800">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Verified Member
+              </div>
+              <div style="display:flex;gap:24px;align-items:start;flex-wrap:wrap">
+                <img id="memberPhoto" src="" alt="" style="width:100px;height:100px;border-radius:50%;object-fit:cover;border:3px solid var(--primary);display:none" />
+                <div id="memberNoPhoto" style="width:100px;height:100px;border-radius:50%;background:#e8e8e8;display:grid;place-items:center;font-size:36px;font-weight:900;color:#aaa;display:none"></div>
+                <div style="flex:1;min-width:200px">
+                  <h3 id="memberName" style="font-size:22px;margin:0 0 4px"></h3>
+                  <p id="memberID" style="margin:0 0 12px;font-family:monospace;color:var(--primary);font-weight:700"></p>
+                  <div id="memberDetails" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:14px;color:var(--muted)"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -150,5 +167,68 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+  const API_URL = '/api/verify';
+  const form = document.getElementById('verifyForm');
+  const input = document.getElementById('verifyInput');
+  const loadingEl = document.getElementById('verifyLoading');
+  const notFoundEl = document.getElementById('verifyNotFound');
+  const foundEl = document.getElementById('verifyFound');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const q = input.value.trim();
+    if (!q) return;
+
+    loadingEl.style.display = 'block';
+    notFoundEl.style.display = 'none';
+    foundEl.style.display = 'none';
+
+    try {
+      const res = await fetch(`${API_URL}?q=${encodeURIComponent(q)}`);
+      const data = await res.json();
+      loadingEl.style.display = 'none';
+
+      if (!data.found) {
+        notFoundEl.style.display = 'block';
+        return;
+      }
+
+      const m = data.member;
+      document.getElementById('memberName').textContent = m.name;
+      document.getElementById('memberID').textContent = m.membership_id;
+
+      const photoEl = document.getElementById('memberPhoto');
+      const noPhotoEl = document.getElementById('memberNoPhoto');
+      if (m.photo) {
+        photoEl.src = m.photo;
+        photoEl.style.display = 'block';
+        noPhotoEl.style.display = 'none';
+      } else {
+        photoEl.style.display = 'none';
+        noPhotoEl.style.display = 'grid';
+        noPhotoEl.textContent = m.name[0];
+      }
+
+      const details = [];
+      if (m.father_name) details.push(['Father', m.father_name]);
+      if (m.city) details.push(['City', m.city]);
+      if (m.province) details.push(['Province', m.province]);
+      if (m.profession) details.push(['Profession', m.profession]);
+      if (m.status) details.push(['Status', m.status.charAt(0).toUpperCase() + m.status.slice(1)]);
+      if (m.joined_date) details.push(['Member Since', new Date(m.joined_date).toLocaleDateString('en-PK', { year: 'numeric', month: 'long', day: 'numeric' })]);
+
+      document.getElementById('memberDetails').innerHTML = details.map(([k, v]) =>
+        `<div><strong style="display:block;color:var(--text);font-size:13px">${k}</strong><span>${v}</span></div>`
+      ).join('');
+
+      foundEl.style.display = 'block';
+    } catch (err) {
+      loadingEl.style.display = 'none';
+      notFoundEl.style.display = 'block';
+      notFoundEl.querySelector('p').textContent = 'Could not connect to verification server. Please try again later.';
+    }
+  });
+  </script>
 </body>
 </html>
